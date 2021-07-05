@@ -1,0 +1,52 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="commonArea">
+      <h2 data-cy="commonAreaDetailsHeading"><span jhiTranslate="tempcondoappApp.commonArea.detail.title">Common Area</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ commonArea.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="tempcondoappApp.commonArea.iDCommonArea">I D Common Area</span></dt>
+        <dd>
+          <span>{{ commonArea.iDCommonArea }}</span>
+        </dd>
+        <dt><span jhiTranslate="tempcondoappApp.commonArea.status">Status</span></dt>
+        <dd>
+          <span>{{ commonArea.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="tempcondoappApp.commonArea.name">Name</span></dt>
+        <dd>
+          <span>{{ commonArea.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="tempcondoappApp.commonArea.iDCommonAreaMedia">I D Common Area Media</span></dt>
+        <dd>
+          <div *ngIf="commonArea.iDCommonAreaMedia">
+            <a [routerLink]="['/media', commonArea.iDCommonAreaMedia?.id, 'view']">{{ commonArea.iDCommonAreaMedia?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="tempcondoappApp.commonArea.condo">Condo</span></dt>
+        <dd>
+          <div *ngIf="commonArea.condo">
+            <a [routerLink]="['/condo', commonArea.condo?.id, 'view']">{{ commonArea.condo?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/common-area', commonArea.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

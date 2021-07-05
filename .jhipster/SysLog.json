@@ -1,0 +1,29 @@
+{
+  "name": "SysLog",
+  "fields": [
+    {
+      "fieldName": "iDSysLog",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "logDateTime",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "action",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "entityTableName": "sys_log",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["tempcondoapp"],
+  "changelogDate": "20210705025028"
+}

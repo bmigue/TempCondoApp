@@ -1,0 +1,76 @@
+<div>
+  <h2 id="page-heading" data-cy="CondoHeading">
+    <span jhiTranslate="tempcondoappApp.condo.home.title">Condos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="tempcondoappApp.condo.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-condo"
+        [routerLink]="['/condo/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="tempcondoappApp.condo.home.createLabel"> Create a new Condo </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="condos?.length === 0">
+    <span jhiTranslate="tempcondoappApp.condo.home.notFound">No condos found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="condos && condos.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="tempcondoappApp.condo.iDCondo">I D Condo</span></th>
+          <th scope="col"><span jhiTranslate="tempcondoappApp.condo.nombre">Nombre</span></th>
+          <th scope="col"><span jhiTranslate="tempcondoappApp.condo.userProfile">User Profile</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let condo of condos; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/condo', condo.id, 'view']">{{ condo.id }}</a>
+          </td>
+          <td>{{ condo.iDCondo }}</td>
+          <td>{{ condo.nombre }}</td>
+          <td>
+            <div *ngIf="condo.userProfile">
+              <a [routerLink]="['/user-profile', condo.userProfile?.id, 'view']">{{ condo.userProfile?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/condo', condo.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/condo', condo.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(condo)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

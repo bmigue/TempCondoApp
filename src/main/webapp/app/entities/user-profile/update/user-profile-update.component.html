@@ -1,0 +1,129 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-user-profile-heading"
+        data-cy="UserProfileCreateUpdateHeading"
+        jhiTranslate="tempcondoappApp.userProfile.home.createOrEditLabel"
+      >
+        Create or edit a User Profile
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tempcondoappApp.userProfile.iDUser" for="field_iDUser">I D User</label>
+          <input type="number" class="form-control" name="iDUser" id="field_iDUser" data-cy="iDUser" formControlName="iDUser" />
+          <div *ngIf="editForm.get('iDUser')!.invalid && (editForm.get('iDUser')!.dirty || editForm.get('iDUser')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('iDUser')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('iDUser')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tempcondoappApp.userProfile.name" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tempcondoappApp.userProfile.lastName" for="field_lastName">Last Name</label>
+          <input type="text" class="form-control" name="lastName" id="field_lastName" data-cy="lastName" formControlName="lastName" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tempcondoappApp.userProfile.email" for="field_email">Email</label>
+          <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tempcondoappApp.userProfile.phoneNumber" for="field_phoneNumber"
+            >Phone Number</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="phoneNumber"
+            id="field_phoneNumber"
+            data-cy="phoneNumber"
+            formControlName="phoneNumber"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tempcondoappApp.userProfile.plateNumber" for="field_plateNumber"
+            >Plate Number</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="plateNumber"
+            id="field_plateNumber"
+            data-cy="plateNumber"
+            formControlName="plateNumber"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tempcondoappApp.userProfile.status" for="field_status">Status</label>
+          <input type="checkbox" class="form-check" name="status" id="field_status" data-cy="status" formControlName="status" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tempcondoappApp.userProfile.type" for="field_type">Type</label>
+          <input type="text" class="form-control" name="type" id="field_type" data-cy="type" formControlName="type" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tempcondoappApp.userProfile.idUserUserInterface" for="field_idUserUserInterface"
+            >Id User User Interface</label
+          >
+          <select
+            class="form-control"
+            id="field_idUserUserInterface"
+            data-cy="idUserUserInterface"
+            name="idUserUserInterface"
+            formControlName="idUserUserInterface"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                userInterfaceOption.id === editForm.get('idUserUserInterface')!.value?.id
+                  ? editForm.get('idUserUserInterface')!.value
+                  : userInterfaceOption
+              "
+              *ngFor="let userInterfaceOption of idUserUserInterfacesCollection; trackBy: trackUserInterfaceById"
+            >
+              {{ userInterfaceOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

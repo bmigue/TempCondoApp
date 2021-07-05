@@ -1,0 +1,38 @@
+{
+  "name": "Condo",
+  "fields": [
+    {
+      "fieldName": "iDCondo",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "nombre",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "commonArea",
+      "otherEntityRelationshipName": "condo",
+      "relationshipName": "iDCondoCommonArea"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "userProfile",
+      "otherEntityRelationshipName": "idUserCondo",
+      "relationshipName": "userProfile"
+    }
+  ],
+  "entityTableName": "condo",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["tempcondoapp"],
+  "changelogDate": "20210705024028"
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity CheckLog.
+    -->
+    <changeSet id="20210705025128-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="check_log_id"
+                                 baseTableName="rel_check_log__idcheck_log_guest"
+                                 constraintName="fk_rel_check_log__idcheck_log_guest__check_log_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="check_log"/>
+
+        <addForeignKeyConstraint baseColumnNames="idcheck_log_guest_id"
+                                 baseTableName="rel_check_log__idcheck_log_guest"
+                                 constraintName="fk_rel_check_log__idcheck_log_guest__idcheck_log_guest_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="guest"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity Property.
+    -->
+    <changeSet id="20210705024728-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="idproperty_media_id"
+                                 baseTableName="property"
+                                 constraintName="fk_property__idproperty_media_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="media"/>
+    </changeSet>
+</databaseChangeLog>

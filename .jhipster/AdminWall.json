@@ -1,0 +1,42 @@
+{
+  "name": "AdminWall",
+  "fields": [
+    {
+      "fieldName": "iDAdminWall",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "postDate",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "post",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "comment",
+      "otherEntityRelationshipName": "adminWall",
+      "relationshipName": "iDAdminWallComment"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "userProfile",
+      "otherEntityRelationshipName": "idUserAdminWall",
+      "relationshipName": "userProfile"
+    }
+  ],
+  "entityTableName": "admin_wall",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["tempcondoapp"],
+  "changelogDate": "20210705025428"
+}

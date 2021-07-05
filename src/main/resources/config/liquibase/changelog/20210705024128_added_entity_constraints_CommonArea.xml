@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity CommonArea.
+    -->
+    <changeSet id="20210705024128-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="idcommon_area_media_id"
+                                 baseTableName="common_area"
+                                 constraintName="fk_common_area__idcommon_area_media_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="media"/>
+
+        <addForeignKeyConstraint baseColumnNames="condo_id"
+                                 baseTableName="common_area"
+                                 constraintName="fk_common_area__condo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="condo"/>
+    </changeSet>
+</databaseChangeLog>

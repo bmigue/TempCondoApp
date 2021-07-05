@@ -1,0 +1,29 @@
+{
+  "tempcondoappApp": {
+    "property": {
+      "home": {
+        "title": "Properties",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Property",
+        "createOrEditLabel": "Create or edit a Property",
+        "notFound": "No Properties found"
+      },
+      "created": "A new Property is created with identifier {{ param }}",
+      "updated": "A Property is updated with identifier {{ param }}",
+      "deleted": "A Property is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Property {{ id }}?"
+      },
+      "detail": {
+        "title": "Property"
+      },
+      "id": "ID",
+      "iDProperty": "I D Property",
+      "type": "Type",
+      "description": "Description",
+      "hasHouseBuilt": "Has House Built",
+      "propertySize": "Property Size",
+      "iDPropertyMedia": "I D Property Media"
+    }
+  }
+}

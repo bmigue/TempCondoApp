@@ -1,0 +1,46 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="generalForum">
+      <h2 data-cy="generalForumDetailsHeading"><span jhiTranslate="tempcondoappApp.generalForum.detail.title">General Forum</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ generalForum.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="tempcondoappApp.generalForum.iDGeneralForum">I D General Forum</span></dt>
+        <dd>
+          <span>{{ generalForum.iDGeneralForum }}</span>
+        </dd>
+        <dt><span jhiTranslate="tempcondoappApp.generalForum.postDate">Post Date</span></dt>
+        <dd>
+          <span>{{ generalForum.postDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="tempcondoappApp.generalForum.post">Post</span></dt>
+        <dd>
+          <span>{{ generalForum.post }}</span>
+        </dd>
+        <dt><span jhiTranslate="tempcondoappApp.generalForum.userProfile">User Profile</span></dt>
+        <dd>
+          <div *ngIf="generalForum.userProfile">
+            <a [routerLink]="['/user-profile', generalForum.userProfile?.id, 'view']">{{ generalForum.userProfile?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/general-forum', generalForum.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

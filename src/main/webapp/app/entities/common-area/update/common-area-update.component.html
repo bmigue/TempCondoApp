@@ -1,0 +1,116 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-common-area-heading"
+        data-cy="CommonAreaCreateUpdateHeading"
+        jhiTranslate="tempcondoappApp.commonArea.home.createOrEditLabel"
+      >
+        Create or edit a Common Area
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tempcondoappApp.commonArea.iDCommonArea" for="field_iDCommonArea"
+            >I D Common Area</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="iDCommonArea"
+            id="field_iDCommonArea"
+            data-cy="iDCommonArea"
+            formControlName="iDCommonArea"
+          />
+          <div
+            *ngIf="editForm.get('iDCommonArea')!.invalid && (editForm.get('iDCommonArea')!.dirty || editForm.get('iDCommonArea')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('iDCommonArea')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('iDCommonArea')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tempcondoappApp.commonArea.status" for="field_status">Status</label>
+          <input type="text" class="form-control" name="status" id="field_status" data-cy="status" formControlName="status" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tempcondoappApp.commonArea.name" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tempcondoappApp.commonArea.iDCommonAreaMedia" for="field_iDCommonAreaMedia"
+            >I D Common Area Media</label
+          >
+          <select
+            class="form-control"
+            id="field_iDCommonAreaMedia"
+            data-cy="iDCommonAreaMedia"
+            name="iDCommonAreaMedia"
+            formControlName="iDCommonAreaMedia"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                mediaOption.id === editForm.get('iDCommonAreaMedia')!.value?.id ? editForm.get('iDCommonAreaMedia')!.value : mediaOption
+              "
+              *ngFor="let mediaOption of iDCommonAreaMediasCollection; trackBy: trackMediaById"
+            >
+              {{ mediaOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tempcondoappApp.commonArea.condo" for="field_condo">Condo</label>
+          <select class="form-control" id="field_condo" data-cy="condo" name="condo" formControlName="condo">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="condoOption.id === editForm.get('condo')!.value?.id ? editForm.get('condo')!.value : condoOption"
+              *ngFor="let condoOption of condosSharedCollection; trackBy: trackCondoById"
+            >
+              {{ condoOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

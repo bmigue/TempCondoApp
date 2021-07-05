@@ -1,0 +1,25 @@
+{
+  "name": "Media",
+  "fields": [
+    {
+      "fieldName": "iDMedia",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "url",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "entityTableName": "media",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["tempcondoapp"],
+  "changelogDate": "20210705024228"
+}

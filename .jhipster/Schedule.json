@@ -1,0 +1,36 @@
+{
+  "name": "Schedule",
+  "fields": [
+    {
+      "fieldName": "iDSchedule",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "inDateTime",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "outDateTime",
+      "fieldType": "ZonedDateTime"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "userProfile",
+      "otherEntityRelationshipName": "idUserSchedule",
+      "relationshipName": "userProfile"
+    }
+  ],
+  "entityTableName": "schedule",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["tempcondoapp"],
+  "changelogDate": "20210705024628"
+}

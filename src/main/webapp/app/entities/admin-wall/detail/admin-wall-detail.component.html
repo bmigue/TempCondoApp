@@ -1,0 +1,46 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="adminWall">
+      <h2 data-cy="adminWallDetailsHeading"><span jhiTranslate="tempcondoappApp.adminWall.detail.title">Admin Wall</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ adminWall.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="tempcondoappApp.adminWall.iDAdminWall">I D Admin Wall</span></dt>
+        <dd>
+          <span>{{ adminWall.iDAdminWall }}</span>
+        </dd>
+        <dt><span jhiTranslate="tempcondoappApp.adminWall.postDate">Post Date</span></dt>
+        <dd>
+          <span>{{ adminWall.postDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="tempcondoappApp.adminWall.post">Post</span></dt>
+        <dd>
+          <span>{{ adminWall.post }}</span>
+        </dd>
+        <dt><span jhiTranslate="tempcondoappApp.adminWall.userProfile">User Profile</span></dt>
+        <dd>
+          <div *ngIf="adminWall.userProfile">
+            <a [routerLink]="['/user-profile', adminWall.userProfile?.id, 'view']">{{ adminWall.userProfile?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/admin-wall', adminWall.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

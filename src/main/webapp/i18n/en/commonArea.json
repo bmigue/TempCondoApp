@@ -1,0 +1,29 @@
+{
+  "tempcondoappApp": {
+    "commonArea": {
+      "home": {
+        "title": "Common Areas",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Common Area",
+        "createOrEditLabel": "Create or edit a Common Area",
+        "notFound": "No Common Areas found"
+      },
+      "created": "A new Common Area is created with identifier {{ param }}",
+      "updated": "A Common Area is updated with identifier {{ param }}",
+      "deleted": "A Common Area is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Common Area {{ id }}?"
+      },
+      "detail": {
+        "title": "Common Area"
+      },
+      "id": "ID",
+      "iDCommonArea": "I D Common Area",
+      "status": "Status",
+      "name": "Name",
+      "iDCommonAreaMedia": "I D Common Area Media",
+      "iDCommonAreaReservation": "I D Common Area Reservation",
+      "condo": "Condo"
+    }
+  }
+}

@@ -1,0 +1,75 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-condo-heading" data-cy="CondoCreateUpdateHeading" jhiTranslate="tempcondoappApp.condo.home.createOrEditLabel">
+        Create or edit a Condo
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tempcondoappApp.condo.iDCondo" for="field_iDCondo">I D Condo</label>
+          <input type="number" class="form-control" name="iDCondo" id="field_iDCondo" data-cy="iDCondo" formControlName="iDCondo" />
+          <div *ngIf="editForm.get('iDCondo')!.invalid && (editForm.get('iDCondo')!.dirty || editForm.get('iDCondo')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('iDCondo')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('iDCondo')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tempcondoappApp.condo.nombre" for="field_nombre">Nombre</label>
+          <input type="text" class="form-control" name="nombre" id="field_nombre" data-cy="nombre" formControlName="nombre" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tempcondoappApp.condo.userProfile" for="field_userProfile">User Profile</label>
+          <select class="form-control" id="field_userProfile" data-cy="userProfile" name="userProfile" formControlName="userProfile">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                userProfileOption.id === editForm.get('userProfile')!.value?.id ? editForm.get('userProfile')!.value : userProfileOption
+              "
+              *ngFor="let userProfileOption of userProfilesSharedCollection; trackBy: trackUserProfileById"
+            >
+              {{ userProfileOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

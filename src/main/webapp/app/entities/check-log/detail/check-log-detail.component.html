@@ -1,0 +1,47 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="checkLog">
+      <h2 data-cy="checkLogDetailsHeading"><span jhiTranslate="tempcondoappApp.checkLog.detail.title">Check Log</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ checkLog.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="tempcondoappApp.checkLog.iDCheckLog">I D Check Log</span></dt>
+        <dd>
+          <span>{{ checkLog.iDCheckLog }}</span>
+        </dd>
+        <dt><span jhiTranslate="tempcondoappApp.checkLog.inDateTime">In Date Time</span></dt>
+        <dd>
+          <span>{{ checkLog.inDateTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="tempcondoappApp.checkLog.outDateTime">Out Date Time</span></dt>
+        <dd>
+          <span>{{ checkLog.outDateTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="tempcondoappApp.checkLog.iDCheckLogGuest">I D Check Log Guest</span></dt>
+        <dd>
+          <span *ngFor="let iDCheckLogGuest of checkLog.iDCheckLogGuests; let last = last">
+            <a [routerLink]="['/guest', iDCheckLogGuest?.id, 'view']">{{ iDCheckLogGuest.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/check-log', checkLog.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+{
+  "tempcondoappApp": {
+    "sysLog": {
+      "home": {
+        "title": "Sys Logs",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Sys Log",
+        "createOrEditLabel": "Create or edit a Sys Log",
+        "notFound": "No Sys Logs found"
+      },
+      "created": "A new Sys Log is created with identifier {{ param }}",
+      "updated": "A Sys Log is updated with identifier {{ param }}",
+      "deleted": "A Sys Log is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Sys Log {{ id }}?"
+      },
+      "detail": {
+        "title": "Sys Log"
+      },
+      "id": "ID",
+      "iDSysLog": "I D Sys Log",
+      "logDateTime": "Log Date Time",
+      "action": "Action"
+    }
+  }
+}

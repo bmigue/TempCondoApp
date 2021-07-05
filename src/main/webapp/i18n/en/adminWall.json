@@ -1,0 +1,28 @@
+{
+  "tempcondoappApp": {
+    "adminWall": {
+      "home": {
+        "title": "Admin Walls",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Admin Wall",
+        "createOrEditLabel": "Create or edit a Admin Wall",
+        "notFound": "No Admin Walls found"
+      },
+      "created": "A new Admin Wall is created with identifier {{ param }}",
+      "updated": "A Admin Wall is updated with identifier {{ param }}",
+      "deleted": "A Admin Wall is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Admin Wall {{ id }}?"
+      },
+      "detail": {
+        "title": "Admin Wall"
+      },
+      "id": "ID",
+      "iDAdminWall": "I D Admin Wall",
+      "postDate": "Post Date",
+      "post": "Post",
+      "iDAdminWallComment": "I D Admin Wall Comment",
+      "userProfile": "User Profile"
+    }
+  }
+}

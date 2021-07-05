@@ -1,0 +1,42 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="condo">
+      <h2 data-cy="condoDetailsHeading"><span jhiTranslate="tempcondoappApp.condo.detail.title">Condo</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ condo.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="tempcondoappApp.condo.iDCondo">I D Condo</span></dt>
+        <dd>
+          <span>{{ condo.iDCondo }}</span>
+        </dd>
+        <dt><span jhiTranslate="tempcondoappApp.condo.nombre">Nombre</span></dt>
+        <dd>
+          <span>{{ condo.nombre }}</span>
+        </dd>
+        <dt><span jhiTranslate="tempcondoappApp.condo.userProfile">User Profile</span></dt>
+        <dd>
+          <div *ngIf="condo.userProfile">
+            <a [routerLink]="['/user-profile', condo.userProfile?.id, 'view']">{{ condo.userProfile?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/condo', condo.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

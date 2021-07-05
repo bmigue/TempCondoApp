@@ -1,0 +1,109 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-schedule-heading" data-cy="ScheduleCreateUpdateHeading" jhiTranslate="tempcondoappApp.schedule.home.createOrEditLabel">
+        Create or edit a Schedule
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tempcondoappApp.schedule.iDSchedule" for="field_iDSchedule">I D Schedule</label>
+          <input
+            type="number"
+            class="form-control"
+            name="iDSchedule"
+            id="field_iDSchedule"
+            data-cy="iDSchedule"
+            formControlName="iDSchedule"
+          />
+          <div *ngIf="editForm.get('iDSchedule')!.invalid && (editForm.get('iDSchedule')!.dirty || editForm.get('iDSchedule')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('iDSchedule')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('iDSchedule')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tempcondoappApp.schedule.inDateTime" for="field_inDateTime">In Date Time</label>
+          <div class="d-flex">
+            <input
+              id="field_inDateTime"
+              data-cy="inDateTime"
+              type="datetime-local"
+              class="form-control"
+              name="inDateTime"
+              formControlName="inDateTime"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tempcondoappApp.schedule.outDateTime" for="field_outDateTime"
+            >Out Date Time</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_outDateTime"
+              data-cy="outDateTime"
+              type="datetime-local"
+              class="form-control"
+              name="outDateTime"
+              formControlName="outDateTime"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tempcondoappApp.schedule.userProfile" for="field_userProfile">User Profile</label>
+          <select class="form-control" id="field_userProfile" data-cy="userProfile" name="userProfile" formControlName="userProfile">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                userProfileOption.id === editForm.get('userProfile')!.value?.id ? editForm.get('userProfile')!.value : userProfileOption
+              "
+              *ngFor="let userProfileOption of userProfilesSharedCollection; trackBy: trackUserProfileById"
+            >
+              {{ userProfileOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

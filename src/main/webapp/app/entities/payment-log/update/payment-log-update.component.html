@@ -1,0 +1,111 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-payment-log-heading"
+        data-cy="PaymentLogCreateUpdateHeading"
+        jhiTranslate="tempcondoappApp.paymentLog.home.createOrEditLabel"
+      >
+        Create or edit a Payment Log
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tempcondoappApp.paymentLog.iDPaymentLog" for="field_iDPaymentLog"
+            >I D Payment Log</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="iDPaymentLog"
+            id="field_iDPaymentLog"
+            data-cy="iDPaymentLog"
+            formControlName="iDPaymentLog"
+          />
+          <div
+            *ngIf="editForm.get('iDPaymentLog')!.invalid && (editForm.get('iDPaymentLog')!.dirty || editForm.get('iDPaymentLog')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('iDPaymentLog')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('iDPaymentLog')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tempcondoappApp.paymentLog.dueDate" for="field_dueDate">Due Date</label>
+          <div class="input-group">
+            <input
+              id="field_dueDate"
+              data-cy="dueDate"
+              type="text"
+              class="form-control"
+              name="dueDate"
+              ngbDatepicker
+              #dueDateDp="ngbDatepicker"
+              formControlName="dueDate"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="dueDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tempcondoappApp.paymentLog.status" for="field_status">Status</label>
+          <input type="text" class="form-control" name="status" id="field_status" data-cy="status" formControlName="status" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tempcondoappApp.paymentLog.userProfile" for="field_userProfile"
+            >User Profile</label
+          >
+          <select class="form-control" id="field_userProfile" data-cy="userProfile" name="userProfile" formControlName="userProfile">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                userProfileOption.id === editForm.get('userProfile')!.value?.id ? editForm.get('userProfile')!.value : userProfileOption
+              "
+              *ngFor="let userProfileOption of userProfilesSharedCollection; trackBy: trackUserProfileById"
+            >
+              {{ userProfileOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

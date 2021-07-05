@@ -1,0 +1,52 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="reservation">
+      <h2 data-cy="reservationDetailsHeading"><span jhiTranslate="tempcondoappApp.reservation.detail.title">Reservation</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ reservation.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="tempcondoappApp.reservation.iDReservation">I D Reservation</span></dt>
+        <dd>
+          <span>{{ reservation.iDReservation }}</span>
+        </dd>
+        <dt><span jhiTranslate="tempcondoappApp.reservation.resDateTime">Res Date Time</span></dt>
+        <dd>
+          <span>{{ reservation.resDateTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="tempcondoappApp.reservation.status">Status</span></dt>
+        <dd>
+          <span>{{ reservation.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="tempcondoappApp.reservation.userProfile">User Profile</span></dt>
+        <dd>
+          <div *ngIf="reservation.userProfile">
+            <a [routerLink]="['/user-profile', reservation.userProfile?.id, 'view']">{{ reservation.userProfile?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="tempcondoappApp.reservation.commonArea">Common Area</span></dt>
+        <dd>
+          <div *ngIf="reservation.commonArea">
+            <a [routerLink]="['/common-area', reservation.commonArea?.id, 'view']">{{ reservation.commonArea?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/reservation', reservation.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

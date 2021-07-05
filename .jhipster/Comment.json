@@ -1,0 +1,42 @@
+{
+  "name": "Comment",
+  "fields": [
+    {
+      "fieldName": "iDComment",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "postDate",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "comment",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "adminWall",
+      "otherEntityRelationshipName": "iDAdminWallComment",
+      "relationshipName": "adminWall"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "generalForum",
+      "otherEntityRelationshipName": "iDGeneralForumComment",
+      "relationshipName": "generalForum"
+    }
+  ],
+  "entityTableName": "comment",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["tempcondoapp"],
+  "changelogDate": "20210705025328"
+}

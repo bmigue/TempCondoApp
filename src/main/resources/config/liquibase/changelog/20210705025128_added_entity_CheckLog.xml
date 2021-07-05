@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity CheckLog.
+    -->
+    <changeSet id="20210705025128-1" author="jhipster">
+        <createTable tableName="check_log">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="i_d_check_log" type="integer">
+                <constraints nullable="false" unique="true" uniqueConstraintName="ux_check_log__i_d_check_log" />
+            </column>
+            <column name="in_date_time" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="out_date_time" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+        <dropDefaultValue tableName="check_log" columnName="in_date_time" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="check_log" columnName="out_date_time" columnDataType="${datetimeType}"/>
+    </changeSet>
+
+    <changeSet id="20210705025128-1-relations" author="jhipster">
+
+        <createTable tableName="rel_check_log__idcheck_log_guest">
+            <column name="idcheck_log_guest_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="check_log_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="check_log_id, idcheck_log_guest_id" tableName="rel_check_log__idcheck_log_guest"/>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20210705025128-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/check_log.csv"
+                  separator=";"
+                  tableName="check_log">
+            <column name="id" type="numeric"/>
+            <column name="i_d_check_log" type="numeric"/>
+            <column name="in_date_time" type="${datetimeType}"/>
+            <column name="out_date_time" type="${datetimeType}"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

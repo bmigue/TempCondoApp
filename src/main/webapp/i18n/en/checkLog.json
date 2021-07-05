@@ -1,0 +1,27 @@
+{
+  "tempcondoappApp": {
+    "checkLog": {
+      "home": {
+        "title": "Check Logs",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Check Log",
+        "createOrEditLabel": "Create or edit a Check Log",
+        "notFound": "No Check Logs found"
+      },
+      "created": "A new Check Log is created with identifier {{ param }}",
+      "updated": "A Check Log is updated with identifier {{ param }}",
+      "deleted": "A Check Log is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Check Log {{ id }}?"
+      },
+      "detail": {
+        "title": "Check Log"
+      },
+      "id": "ID",
+      "iDCheckLog": "I D Check Log",
+      "inDateTime": "In Date Time",
+      "outDateTime": "Out Date Time",
+      "iDCheckLogGuest": "I D Check Log Guest"
+    }
+  }
+}

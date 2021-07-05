@@ -1,0 +1,42 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="exceptionTable">
+      <h2 data-cy="exceptionTableDetailsHeading">
+        <span jhiTranslate="tempcondoappApp.exceptionTable.detail.title">Exception Table</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ exceptionTable.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="tempcondoappApp.exceptionTable.iDException">I D Exception</span></dt>
+        <dd>
+          <span>{{ exceptionTable.iDException }}</span>
+        </dd>
+        <dt><span jhiTranslate="tempcondoappApp.exceptionTable.message">Message</span></dt>
+        <dd>
+          <span>{{ exceptionTable.message }}</span>
+        </dd>
+        <dt><span jhiTranslate="tempcondoappApp.exceptionTable.number">Number</span></dt>
+        <dd>
+          <span>{{ exceptionTable.number }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/exception-table', exceptionTable.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

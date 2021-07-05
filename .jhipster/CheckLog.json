@@ -1,0 +1,37 @@
+{
+  "name": "CheckLog",
+  "fields": [
+    {
+      "fieldName": "iDCheckLog",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "inDateTime",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "outDateTime",
+      "fieldType": "ZonedDateTime"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "guest",
+      "otherEntityRelationshipName": "iDGuestCheckLog",
+      "relationshipName": "iDCheckLogGuest",
+      "ownerSide": true
+    }
+  ],
+  "entityTableName": "check_log",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["tempcondoapp"],
+  "changelogDate": "20210705025128"
+}

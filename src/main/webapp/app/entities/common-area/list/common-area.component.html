@@ -1,0 +1,94 @@
+<div>
+  <h2 id="page-heading" data-cy="CommonAreaHeading">
+    <span jhiTranslate="tempcondoappApp.commonArea.home.title">Common Areas</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="tempcondoappApp.commonArea.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-common-area"
+        [routerLink]="['/common-area/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="tempcondoappApp.commonArea.home.createLabel"> Create a new Common Area </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="commonAreas?.length === 0">
+    <span jhiTranslate="tempcondoappApp.commonArea.home.notFound">No commonAreas found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="commonAreas && commonAreas.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="tempcondoappApp.commonArea.iDCommonArea">I D Common Area</span></th>
+          <th scope="col"><span jhiTranslate="tempcondoappApp.commonArea.status">Status</span></th>
+          <th scope="col"><span jhiTranslate="tempcondoappApp.commonArea.name">Name</span></th>
+          <th scope="col"><span jhiTranslate="tempcondoappApp.commonArea.iDCommonAreaMedia">I D Common Area Media</span></th>
+          <th scope="col"><span jhiTranslate="tempcondoappApp.commonArea.condo">Condo</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let commonArea of commonAreas; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/common-area', commonArea.id, 'view']">{{ commonArea.id }}</a>
+          </td>
+          <td>{{ commonArea.iDCommonArea }}</td>
+          <td>{{ commonArea.status }}</td>
+          <td>{{ commonArea.name }}</td>
+          <td>
+            <div *ngIf="commonArea.iDCommonAreaMedia">
+              <a [routerLink]="['/media', commonArea.iDCommonAreaMedia?.id, 'view']">{{ commonArea.iDCommonAreaMedia?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="commonArea.condo">
+              <a [routerLink]="['/condo', commonArea.condo?.id, 'view']">{{ commonArea.condo?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/common-area', commonArea.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/common-area', commonArea.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(commonArea)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

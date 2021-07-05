@@ -1,0 +1,88 @@
+<div>
+  <h2 id="page-heading" data-cy="PaymentLogHeading">
+    <span jhiTranslate="tempcondoappApp.paymentLog.home.title">Payment Logs</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="tempcondoappApp.paymentLog.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-payment-log"
+        [routerLink]="['/payment-log/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="tempcondoappApp.paymentLog.home.createLabel"> Create a new Payment Log </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="paymentLogs?.length === 0">
+    <span jhiTranslate="tempcondoappApp.paymentLog.home.notFound">No paymentLogs found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="paymentLogs && paymentLogs.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="tempcondoappApp.paymentLog.iDPaymentLog">I D Payment Log</span></th>
+          <th scope="col"><span jhiTranslate="tempcondoappApp.paymentLog.dueDate">Due Date</span></th>
+          <th scope="col"><span jhiTranslate="tempcondoappApp.paymentLog.status">Status</span></th>
+          <th scope="col"><span jhiTranslate="tempcondoappApp.paymentLog.userProfile">User Profile</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let paymentLog of paymentLogs; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/payment-log', paymentLog.id, 'view']">{{ paymentLog.id }}</a>
+          </td>
+          <td>{{ paymentLog.iDPaymentLog }}</td>
+          <td>{{ paymentLog.dueDate | formatMediumDate }}</td>
+          <td>{{ paymentLog.status }}</td>
+          <td>
+            <div *ngIf="paymentLog.userProfile">
+              <a [routerLink]="['/user-profile', paymentLog.userProfile?.id, 'view']">{{ paymentLog.userProfile?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/payment-log', paymentLog.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/payment-log', paymentLog.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(paymentLog)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

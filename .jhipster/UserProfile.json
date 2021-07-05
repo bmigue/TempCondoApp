@@ -1,0 +1,99 @@
+{
+  "name": "UserProfile",
+  "fields": [
+    {
+      "fieldName": "iDUser",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "phoneNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "plateNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "userInterface",
+      "otherEntityRelationshipName": "userProfile",
+      "relationshipName": "idUserUserInterface",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "paymentLog",
+      "otherEntityRelationshipName": "userProfile",
+      "relationshipName": "idUserPayment"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "guest",
+      "otherEntityRelationshipName": "userProfile",
+      "relationshipName": "idUserGuest"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "schedule",
+      "otherEntityRelationshipName": "userProfile",
+      "relationshipName": "idUserSchedule"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "condo",
+      "otherEntityRelationshipName": "userProfile",
+      "relationshipName": "idUserCondo"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "reservation",
+      "otherEntityRelationshipName": "userProfile",
+      "relationshipName": "idUserReservation"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "adminWall",
+      "otherEntityRelationshipName": "userProfile",
+      "relationshipName": "idUserAdminWall"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "generalForum",
+      "otherEntityRelationshipName": "userProfile",
+      "relationshipName": "idUserGeneralForum"
+    }
+  ],
+  "entityTableName": "user_profile",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["tempcondoapp"],
+  "changelogDate": "20210705024828"
+}

@@ -1,0 +1,182 @@
+
+application {
+  config {
+    baseName tempcondoapp,
+    applicationType monolith,
+    packageName com.cenfotec,
+    devDatabaseType mysql,
+    prodDatabaseType mysql,
+    clientFramework angular,
+    authenticationType session
+  }
+  entities *
+}
+
+entity Condo {
+   iDCondo Integer required unique,
+   nombre String 
+}
+
+entity CommonArea {
+iDCommonArea Integer required unique,
+status String, 
+name String
+}
+
+entity Media {
+   iDMedia Integer required unique,
+   url String
+}
+entity ExceptionTable {
+   iDException Integer required unique,
+   message String,
+   number Integer
+}
+
+entity Reservation{
+ iDReservation Integer required unique,
+ resDateTime ZonedDateTime, 
+ status String
+}
+
+entity UserInterface{
+ iDUserInterface Integer required unique,
+ themeName String, 
+ color String
+}
+
+entity Schedule{
+ iDSchedule Integer required unique,
+ inDateTime ZonedDateTime, 
+ outDateTime ZonedDateTime
+}
+
+entity Property {
+   iDProperty Integer required unique,
+   type String,
+   description String, 
+   hasHouseBuilt Boolean, 
+   propertySize Long,
+}
+
+entity UserProfile {
+   iDUser Integer required unique,
+   name String,
+   lastName String, 
+   email String, 
+   phoneNumber String, 
+   plateNumber String, 
+   status Boolean, 
+   type String //Admin, Tenant, Security Officer
+}
+
+entity Guest {
+   iDGuest Integer required unique,
+   fullName String, 
+   plateNumber String, 
+   status String
+}
+
+entity SysLog {
+   iDSysLog Integer required unique,
+   logDateTime ZonedDateTime, 
+   action String,
+}
+
+entity CheckLog {
+   iDCheckLog Integer required unique,
+   inDateTime ZonedDateTime, 
+    outDateTime ZonedDateTime
+}
+
+entity PaymentLog {
+   iDPaymentLog Integer required unique,
+   dueDate LocalDate, 
+   status String //Due, Paid, Not billed
+}
+
+entity Comment {
+   iDComment Integer required unique,
+   postDate ZonedDateTime, 
+   comment String
+}
+
+entity AdminWall {
+   iDAdminWall Integer required unique,
+   postDate ZonedDateTime, 
+   post String
+}
+
+entity GeneralForum {
+   iDGeneralForum Integer required unique,
+   postDate ZonedDateTime, 
+   post String
+}
+
+//User relations 
+relationship OneToMany {
+  UserProfile{idUserPayment} to PaymentLog
+}
+
+relationship OneToMany {
+  UserProfile{idUserGuest} to Guest
+}
+
+//Only for Tenants
+//relationship OneToOne {
+ // User{ID} to Property{ID}
+//}
+
+//Only for Security officers
+relationship OneToMany {
+  UserProfile{idUserSchedule} to Schedule
+}
+
+//Only for Admin
+relationship OneToMany {
+  UserProfile{idUserCondo} to Condo
+}
+
+relationship OneToOne {
+  UserProfile{idUserUserInterface} to UserInterface
+}
+
+relationship OneToMany {
+  UserProfile{idUserReservation} to Reservation
+}
+
+//Only for Admin
+relationship OneToMany {
+  UserProfile{idUserAdminWall} to AdminWall
+}
+
+relationship OneToMany {
+  UserProfile{idUserGeneralForum} to GeneralForum
+}
+
+relationship OneToMany {
+  AdminWall{iDAdminWallComment} to Comment
+}
+
+relationship OneToMany {
+  GeneralForum{iDGeneralForumComment} to Comment
+}
+
+relationship OneToMany {
+  Condo{iDCondoCommonArea} to CommonArea
+}
+
+relationship OneToMany {
+  CommonArea{iDCommonAreaReservation} to Reservation
+}
+
+relationship OneToOne {
+  CommonArea{iDCommonAreaMedia} to Media
+}
+
+relationship OneToOne {
+  Property{iDPropertyMedia} to Media
+}
+relationship ManyToMany {
+  CheckLog{iDCheckLogGuest} to Guest{iDGuestCheckLog}
+}

@@ -1,0 +1,49 @@
+{
+  "name": "CommonArea",
+  "fields": [
+    {
+      "fieldName": "iDCommonArea",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "media",
+      "otherEntityRelationshipName": "commonArea",
+      "relationshipName": "iDCommonAreaMedia",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "reservation",
+      "otherEntityRelationshipName": "commonArea",
+      "relationshipName": "iDCommonAreaReservation"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "condo",
+      "otherEntityRelationshipName": "iDCondoCommonArea",
+      "relationshipName": "condo"
+    }
+  ],
+  "entityTableName": "common_area",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["tempcondoapp"],
+  "changelogDate": "20210705024128"
+}

@@ -1,0 +1,45 @@
+{
+  "name": "Property",
+  "fields": [
+    {
+      "fieldName": "iDProperty",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "hasHouseBuilt",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "propertySize",
+      "fieldType": "Long"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "media",
+      "otherEntityRelationshipName": "property",
+      "relationshipName": "iDPropertyMedia",
+      "ownerSide": true
+    }
+  ],
+  "entityTableName": "property",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["tempcondoapp"],
+  "changelogDate": "20210705024728"
+}

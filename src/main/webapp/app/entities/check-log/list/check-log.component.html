@@ -1,0 +1,89 @@
+<div>
+  <h2 id="page-heading" data-cy="CheckLogHeading">
+    <span jhiTranslate="tempcondoappApp.checkLog.home.title">Check Logs</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="tempcondoappApp.checkLog.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-check-log"
+        [routerLink]="['/check-log/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="tempcondoappApp.checkLog.home.createLabel"> Create a new Check Log </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="checkLogs?.length === 0">
+    <span jhiTranslate="tempcondoappApp.checkLog.home.notFound">No checkLogs found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="checkLogs && checkLogs.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="tempcondoappApp.checkLog.iDCheckLog">I D Check Log</span></th>
+          <th scope="col"><span jhiTranslate="tempcondoappApp.checkLog.inDateTime">In Date Time</span></th>
+          <th scope="col"><span jhiTranslate="tempcondoappApp.checkLog.outDateTime">Out Date Time</span></th>
+          <th scope="col"><span jhiTranslate="tempcondoappApp.checkLog.iDCheckLogGuest">I D Check Log Guest</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let checkLog of checkLogs; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/check-log', checkLog.id, 'view']">{{ checkLog.id }}</a>
+          </td>
+          <td>{{ checkLog.iDCheckLog }}</td>
+          <td>{{ checkLog.inDateTime | formatMediumDatetime }}</td>
+          <td>{{ checkLog.outDateTime | formatMediumDatetime }}</td>
+          <td>
+            <span *ngFor="let iDCheckLogGuest of checkLog.iDCheckLogGuests; let last = last">
+              <a class="form-control-static" [routerLink]="['/guest', iDCheckLogGuest.id, 'view']">{{ iDCheckLogGuest.id }}</a
+              >{{ last ? '' : ', ' }}
+            </span>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/check-log', checkLog.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/check-log', checkLog.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(checkLog)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+{
+  "tempcondoappApp": {
+    "condo": {
+      "home": {
+        "title": "Condos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Condo",
+        "createOrEditLabel": "Create or edit a Condo",
+        "notFound": "No Condos found"
+      },
+      "created": "A new Condo is created with identifier {{ param }}",
+      "updated": "A Condo is updated with identifier {{ param }}",
+      "deleted": "A Condo is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Condo {{ id }}?"
+      },
+      "detail": {
+        "title": "Condo"
+      },
+      "id": "ID",
+      "iDCondo": "I D Condo",
+      "nombre": "Nombre",
+      "iDCondoCommonArea": "I D Condo Common Area",
+      "userProfile": "User Profile"
+    }
+  }
+}

@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="guest">
+      <h2 data-cy="guestDetailsHeading"><span jhiTranslate="tempcondoappApp.guest.detail.title">Guest</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ guest.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="tempcondoappApp.guest.iDGuest">I D Guest</span></dt>
+        <dd>
+          <span>{{ guest.iDGuest }}</span>
+        </dd>
+        <dt><span jhiTranslate="tempcondoappApp.guest.fullName">Full Name</span></dt>
+        <dd>
+          <span>{{ guest.fullName }}</span>
+        </dd>
+        <dt><span jhiTranslate="tempcondoappApp.guest.plateNumber">Plate Number</span></dt>
+        <dd>
+          <span>{{ guest.plateNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="tempcondoappApp.guest.status">Status</span></dt>
+        <dd>
+          <span>{{ guest.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="tempcondoappApp.guest.userProfile">User Profile</span></dt>
+        <dd>
+          <div *ngIf="guest.userProfile">
+            <a [routerLink]="['/user-profile', guest.userProfile?.id, 'view']">{{ guest.userProfile?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/guest', guest.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
